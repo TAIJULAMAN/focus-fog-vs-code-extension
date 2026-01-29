@@ -4,9 +4,9 @@
 
 **Focus Fog** is a Visual Studio Code extension designed to improve your coding concentration. It automatically detects the active code block (function, class, or method) you are working on and visually "dims" everything else. This helps you maintain context without being distracted by the surrounding "spaghetti code."
 
-<!-- ![Focus Fog Demo](https://via.placeholder.com/800x400?text=Focus+Fog+Demo+Placeholder) -->
+![Focus Fog Demo](assets/demo.png)
 
-## 💡 Usage Example
+## Usage Example
 
 Imagine you are working in a large `UserController.ts` file. You click inside the `updateProfile` method.
 *   **Instantly**, the 200 lines *above* and *below* that method fade to 30% opacity.
