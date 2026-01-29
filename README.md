@@ -6,6 +6,13 @@
 
 <!-- ![Focus Fog Demo](https://via.placeholder.com/800x400?text=Focus+Fog+Demo+Placeholder) -->
 
+## 💡 Usage Example
+
+Imagine you are working in a large `UserController.ts` file. You click inside the `updateProfile` method.
+*   **Instantly**, the 200 lines *above* and *below* that method fade to 30% opacity.
+*   Your eyes naturally settle on the 20 lines of active code.
+*   Move your cursor to the `validateInputs` helper function? The "fog" shifts, highlighting just that helper.
+
 ## Key Features
 
 *   **Automatic Scope Detection**: intelligently identifies the function, class, or logical block under your cursor using VS Code's native folding providers.
