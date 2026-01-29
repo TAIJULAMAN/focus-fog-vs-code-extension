@@ -1,37 +1,67 @@
-# Focus Fog
+# Focus Fog (Scope Spotlight)
 
-**Focus Fog** (Scope Spotlight) is a VS Code extension that helps you stay in the flow by visually dimming everything outside your current code block.
+> **Stay in the flow. Focus on what you write.**
+
+**Focus Fog** is a Visual Studio Code extension designed to improve your coding concentration. It automatically detects the active code block (function, class, or method) you are working on and visually "dims" everything else. This helps you maintain context without being distracted by the surrounding "spaghetti code."
 
 ![Focus Fog Demo](https://via.placeholder.com/800x400?text=Focus+Fog+Demo+Placeholder)
 
-## Features
+## Key Features
 
--   **Automatic Focus**: Detects the function, class, or block you are editing and dims the rest.
--   **Debounced Updates**: Performance-optimized to avoid flickering while you type or navigate.
--   **Configurable**: Adjust opacity, delay, or toggle it on/off.
--   **Standard VS Code Folding**: Uses the built-in folding providers for maximum compatibility with TypeScript, Python, C#, etc.
+*   **🎯 Automatic Scope Detection**: intelligently identifies the function, class, or logical block under your cursor using VS Code's native folding providers.
+*   **💨 Distraction-Free Coding**: Dims irrelevant code above and below your current focus area.
+*   **⚡ Performance Optimized**: Built with a configurable debounce mechanism to ensure zero lag while typing or scrolling.
+*   **🔧 Fully Configurable**: Customize the opacity, update delay, and more to match your workflow.
+*   **🌐 Language Agnostic**: Works effectively with any language that supports code folding (TypeScript, JavaScript, Python, C#, Rust, Go, etc.).
+
+## Installation
+
+1.  Open **Visual Studio Code**.
+2.  Press `Ctrl+P` to open the Quick Open dialog.
+3.  Type `ext install antigravity.focus-fog` (once published) or manually install the `.vsix`.
 
 ## Configuration
 
+You can customize **Focus Fog** to suit your preferences. Go to **File > Preferences > Settings** (`Ctrl+,`) and search for `focusFog`.
+
 | Setting | Default | Description |
 | :--- | :--- | :--- |
-| `focusFog.enabled` | `true` | Enable or disable the extension. |
-| `focusFog.opacity` | `0.3` | Opacity of the "fog" (0.0 to 1.0). Lower means the background is more transparent/dimmed. |
-| `focusFog.delay` | `200` | Milliseconds to wait before updating the fog (debouncing). |
+| `focusFog.enabled` | `true` | Globally enable or disable the Focus Fog extension. |
+| `focusFog.opacity` | `0.3` | The opacity of the dimmed code. Range: `0.0` (invisible) to `1.0` (fully visible). Lower values create a stronger focus effect. |
+| `focusFog.delay` | `200` | The delay (in milliseconds) before the fog updates after you stop moving the cursor. Higher values reduce flickering during rapid navigation. |
+
+### Example Configuration (`settings.json`)
+
+```json
+{
+  "focusFog.opacity": 0.2,
+  "focusFog.delay": 150,
+  "focusFog.enabled": true
+}
+```
 
 ## Commands
 
--   `Focus Fog: Toggle`: Quickly enable or disable the focus effect.
+Access these commands via the **Command Palette** (`Ctrl+Shift+P` / `Cmd+Shift+P`):
 
-## How it works
+*   **`Focus Fog: Toggle`**: Quickly enable or disable the focus effect without opening settings.
 
-Focus Fog listens to your cursor position and queries VS Code for "Folding Ranges" (the same ones that let you collapse code). It finds the smallest range wrapping your cursor and applies a decoration to everything *before* and *after* that range.
+## FAQ
 
-## Known Issues
+**Q: Why isn't the fog updating immediately?**
+A: To prevent performance issues, Focus Fog waits for a short "debounce" period (default 200ms) after you stop typing or moving the cursor. You can adjust this in the `focusFog.delay` setting.
 
--   If the language server (e.g., TS Server) is slow to provide folding ranges, the fog might lag slightly when opening a new file.
--   Requires a language that supports folding.
+**Q: It's not working for my language!**
+A: Focus Fog relies on the language's "Formatting/Folding Range Provider." Ensure that you have a language extension installed (e.g., Python, C#) that supports code folding for your specific file type.
 
----
+## Release Notes
 
-**Enjoy your focus!**
+### 0.0.1
+*   Initial release.
+*   implemented intelligent scope detection using Folding Ranges.
+*   Added configurable opacity and debounce delay.
+*   Added `Focus Fog: Toggle` command.
+
+## License
+
+This project is licensed under the MIT License.
