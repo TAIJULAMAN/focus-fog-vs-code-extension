@@ -3,7 +3,7 @@
   "displayName": "Focus Fog",
   "description": "Dim code outside your current scope to focus on what matters.",
   "version": "0.0.1",
-  "publisher": "antigravity",
+  "publisher": "MdShahAmanPatwary",
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -36,9 +36,9 @@
           "description": "Enable or disable Focus Fog."
         },
         "focusFog.delay": {
-            "type": "number",
-            "default": 300,
-            "description": "Delay in milliseconds before updating the fog after cursor movement."
+          "type": "number",
+          "default": 300,
+          "description": "Delay in milliseconds before updating the fog after cursor movement."
         }
       }
     }

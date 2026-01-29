@@ -4,21 +4,15 @@
 
 **Focus Fog** is a Visual Studio Code extension designed to improve your coding concentration. It automatically detects the active code block (function, class, or method) you are working on and visually "dims" everything else. This helps you maintain context without being distracted by the surrounding "spaghetti code."
 
-![Focus Fog Demo](https://via.placeholder.com/800x400?text=Focus+Fog+Demo+Placeholder)
+<!-- ![Focus Fog Demo](https://via.placeholder.com/800x400?text=Focus+Fog+Demo+Placeholder) -->
 
 ## Key Features
 
-*   **🎯 Automatic Scope Detection**: intelligently identifies the function, class, or logical block under your cursor using VS Code's native folding providers.
-*   **💨 Distraction-Free Coding**: Dims irrelevant code above and below your current focus area.
-*   **⚡ Performance Optimized**: Built with a configurable debounce mechanism to ensure zero lag while typing or scrolling.
-*   **🔧 Fully Configurable**: Customize the opacity, update delay, and more to match your workflow.
-*   **🌐 Language Agnostic**: Works effectively with any language that supports code folding (TypeScript, JavaScript, Python, C#, Rust, Go, etc.).
-
-## Installation
-
-1.  Open **Visual Studio Code**.
-2.  Press `Ctrl+P` to open the Quick Open dialog.
-3.  Type `ext install antigravity.focus-fog` (once published) or manually install the `.vsix`.
+*   **Automatic Scope Detection**: intelligently identifies the function, class, or logical block under your cursor using VS Code's native folding providers.
+*   **Distraction-Free Coding**: Dims irrelevant code above and below your current focus area.
+*   **Performance Optimized**: Built with a configurable debounce mechanism to ensure zero lag while typing or scrolling.
+*   **Fully Configurable**: Customize the opacity, update delay, and more to match your workflow.
+*   **Language Agnostic**: Works effectively with any language that supports code folding (TypeScript, JavaScript, Python, C#, Rust, Go, etc.).
 
 ## Configuration
 
