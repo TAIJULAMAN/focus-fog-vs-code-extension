@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 
 let fogDecoration: vscode.TextEditorDecorationType | undefined;
 let debounceTimer: Serializable | undefined;
+let fogStatusBarItem: vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Focus Fog is active');
@@ -15,6 +16,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(toggleCommand);
 
+    fogStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+    fogStatusBarItem.command = 'focusFog.toggle';
+    context.subscriptions.push(fogStatusBarItem);
+    updateStatusBarItem();
+    fogStatusBarItem.show();
+
     context.subscriptions.push(
         vscode.window.onDidChangeTextEditorSelection(e => {
             triggerUpdateFog();
@@ -26,6 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
             if (e.affectsConfiguration('focusFog')) {
                 createDecoration();
                 triggerUpdateFog();
+                updateStatusBarItem();
             }
         })
     );
@@ -57,6 +65,19 @@ function triggerUpdateFog() {
     debounceTimer = setTimeout(() => {
         updateFog();
     }, delay);
+}
+
+function updateStatusBarItem() {
+    const config = vscode.workspace.getConfiguration('focusFog');
+    const enabled = config.get<boolean>('enabled');
+    if (enabled) {
+        fogStatusBarItem.text = '$(eye) Fog: On';
+        fogStatusBarItem.tooltip = 'Click to disable Focus Fog';
+    } else {
+        fogStatusBarItem.text = '$(eye-closed) Fog: Off';
+        fogStatusBarItem.tooltip = 'Click to enable Focus Fog';
+        fogStatusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
+    }
 }
 
 type Serializable = any;
@@ -105,9 +126,7 @@ async function updateFog() {
     if (targetRange.start > 0) {
         decorations.push(new vscode.Range(0, 0, targetRange.start, 0));
     }
-    if (targetRange.start > 0) {
-        decorations.push(new vscode.Range(0, 0, targetRange.start, 0));
-    }
+
     if (targetRange.end < document.lineCount - 1) {
         decorations.push(new vscode.Range(targetRange.end + 1, 0, document.lineCount, 0));
     }
@@ -117,5 +136,8 @@ async function updateFog() {
 export function deactivate() {
     if (fogDecoration) {
         fogDecoration.dispose();
+    }
+    if (fogStatusBarItem) {
+        fogStatusBarItem.dispose();
     }
 }
